@@ -63,7 +63,7 @@ ob_start();
             <tbody>
                 <?php foreach ($items as $item): ?>
                 <tr class="border-b border-gray-100 hover:bg-gray-50/50 transition-colors" data-slug="<?= e($item['slug']) ?>">
-                    <td class="px-4 py-3 text-gray-600 font-mono text-xs"><?= $item['order'] ?? 0 ?></td>
+                    <td class="px-4 py-3 text-gray-600 font-mono text-xs"><?= $item['item_order'] ?? 0 ?></td>
                     <td class="px-4 py-3 font-medium text-gray-900"><?= e($item['title']) ?></td>
                     <td class="px-4 py-3 text-gray-500 font-mono text-xs"><?= e($item['slug']) ?></td>
                     <td class="px-4 py-3">

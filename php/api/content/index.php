@@ -41,6 +41,9 @@ if ($method === 'POST') {
         json_response(['error' => 'Invalid JSON body'], 400);
     }
 
+    // Normalize flat admin payload (icon, order, short_description, ...) 
+    $body = normalizeContentPayload($body);
+
     if (empty($body['title']) || empty($body['slug'])) {
         json_response(['error' => 'Missing required fields: title, slug'], 400);
     }
@@ -55,16 +58,17 @@ if ($method === 'POST') {
     }
 
     // Determine next order if not provided
-    $order = $body['order'] ?? null;
+    $order = $body['order'] ?? $body['item_order'] ?? null;
     if ($order === null) {
         $countStmt = $pdo->prepare("SELECT COUNT(*) FROM content_items WHERE type = ?");
         $countStmt->execute([$type]);
         $order = (int) $countStmt->fetchColumn();
     }
+    $order = (int) $order;
 
     $itemData = $body['data'] ?? [];
 
-    $insertSql = "INSERT INTO content_items (type, slug, title, subtitle, description, icon_name, `order`, published, featured, data, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+    $insertSql = "INSERT INTO content_items (type, slug, title, subtitle, description, icon_name, item_order, published, featured, data, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     $insertStmt = $pdo->prepare($insertSql);
     $insertStmt->execute([
         $type,
@@ -72,7 +76,7 @@ if ($method === 'POST') {
         $body['title'],
         $body['subtitle'] ?? null,
         $body['description'] ?? null,
-        $body['iconName'] ?? 'Briefcase',
+        $body['iconName'] ?? $body['icon_name'] ?? 'Briefcase',
         $order,
         isset($body['published']) ? ($body['published'] ? 1 : 0) : 1,
         !empty($body['featured']) ? 1 : 0,

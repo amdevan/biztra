@@ -1,36 +1,36 @@
 RewriteEngine On
 
-# Handle existing files and directories
+# Serve existing files and directories directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Admin routes
+# Admin routes — directory style (e.g. /admin/services/edit/my-slug)
 RewriteRule ^admin$ admin/index.php [L,QSA]
 RewriteRule ^admin/login$ admin/login.php [L,QSA]
 RewriteRule ^admin/settings$ admin/settings/index.php [L,QSA]
 RewriteRule ^admin/about$ admin/about/index.php [L,QSA]
 RewriteRule ^admin/services$ admin/services/index.php [L,QSA]
 RewriteRule ^admin/services/new$ admin/services/new.php [L,QSA]
-RewriteRule ^admin/services/edit/(.+)$ admin/services/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/services/edit/?(.*)$ admin/services/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/industries$ admin/industries/index.php [L,QSA]
 RewriteRule ^admin/industries/new$ admin/industries/new.php [L,QSA]
-RewriteRule ^admin/industries/edit/(.+)$ admin/industries/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/industries/edit/?(.*)$ admin/industries/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/core-values$ admin/core-values/index.php [L,QSA]
 RewriteRule ^admin/core-values/new$ admin/core-values/new.php [L,QSA]
-RewriteRule ^admin/core-values/edit/(.+)$ admin/core-values/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/core-values/edit/?(.*)$ admin/core-values/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/why-choose$ admin/why-choose/index.php [L,QSA]
 RewriteRule ^admin/why-choose/new$ admin/why-choose/new.php [L,QSA]
-RewriteRule ^admin/why-choose/edit/(.+)$ admin/why-choose/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/why-choose/edit/?(.*)$ admin/why-choose/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/approach-steps$ admin/approach-steps/index.php [L,QSA]
 RewriteRule ^admin/approach-steps/new$ admin/approach-steps/new.php [L,QSA]
-RewriteRule ^admin/approach-steps/edit/(.+)$ admin/approach-steps/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/approach-steps/edit/?(.*)$ admin/approach-steps/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/team$ admin/team/index.php [L,QSA]
 RewriteRule ^admin/team/new$ admin/team/new.php [L,QSA]
-RewriteRule ^admin/team/edit/(.+)$ admin/team/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/team/edit/?(.*)$ admin/team/edit.php?slug=$1 [L,QSA]
 RewriteRule ^admin/articles$ admin/articles/index.php [L,QSA]
 RewriteRule ^admin/articles/new$ admin/articles/new.php [L,QSA]
-RewriteRule ^admin/articles/edit/(.+)$ admin/articles/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/articles/edit/?(.*)$ admin/articles/edit.php?slug=$1 [L,QSA]
 
 # API routes
 RewriteRule ^api/auth/login$ api/auth/login.php [L,QSA]

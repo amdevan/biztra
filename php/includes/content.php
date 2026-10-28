@@ -19,7 +19,7 @@ function getAboutContent(): ?array {
 
 function getPublishedContent(string $type): array {
     $pdo = getDB();
-    $stmt = $pdo->prepare("SELECT * FROM content_items WHERE type = ? AND published = 1 ORDER BY `order` ASC, created_at ASC");
+    $stmt = $pdo->prepare("SELECT * FROM content_items WHERE type = ? AND published = 1 ORDER BY item_order ASC, created_at ASC");
     $stmt->execute([$type]);
     $items = $stmt->fetchAll();
     return array_map(function ($item) {
@@ -30,7 +30,7 @@ function getPublishedContent(string $type): array {
 
 function getAllContent(string $type): array {
     $pdo = getDB();
-    $stmt = $pdo->prepare("SELECT * FROM content_items WHERE type = ? ORDER BY `order` ASC, created_at ASC");
+    $stmt = $pdo->prepare("SELECT * FROM content_items WHERE type = ? ORDER BY item_order ASC, created_at ASC");
     $stmt->execute([$type]);
     $items = $stmt->fetchAll();
     return array_map(function ($item) {

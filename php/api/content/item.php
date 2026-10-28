@@ -11,7 +11,6 @@ require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../../includes/auth.php';
 require_once __DIR__ . '/../../includes/content.php';
 require_once __DIR__ . '/../../includes/helpers.php';
-
 $VALID_TYPES = ['service', 'industry', 'core_value', 'why_choose', 'approach_step', 'team_member'];
 
 $type = $_GET['type'] ?? '';
@@ -52,6 +51,9 @@ if ($method === 'PUT') {
         json_response(['error' => 'Invalid JSON body'], 400);
     }
 
+    // Normalize flat admin payload (icon, order, short_description, ...)
+    $body = normalizeContentPayload($body);
+
     // If slug is being changed, check uniqueness within type
     if (!empty($body['slug']) && $body['slug'] !== $slug) {
         $checkStmt = $pdo->prepare("SELECT id FROM content_items WHERE type = ? AND slug = ?");
@@ -71,7 +73,9 @@ if ($method === 'PUT') {
         'subtitle'    => 'subtitle',
         'description' => 'description',
         'iconName'    => 'icon_name',
-        'order'       => '`order`',
+        'icon_name'   => 'icon_name',
+        'item_order'  => 'item_order',
+        'order'       => 'item_order',
         'published'   => 'published',
         'featured'    => 'featured',
     ];
@@ -79,8 +83,8 @@ if ($method === 'PUT') {
     foreach ($fieldMap as $bodyKey => $dbCol) {
         if (array_key_exists($bodyKey, $body)) {
             $setClauses[] = '`' . $dbCol . '` = ?';
-            if ($bodyKey === 'published' || $bodyKey === 'featured' || $bodyKey === 'order') {
-                $values[] = $body[$bodyKey] ? 1 : 0;
+            if ($bodyKey === 'published' || $bodyKey === 'featured' || $bodyKey === 'order' || $bodyKey === 'item_order') {
+                $values[] = (int) $body[$bodyKey];
             } else {
                 $values[] = $body[$bodyKey];
             }
