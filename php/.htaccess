@@ -1,0 +1,59 @@
+RewriteEngine On
+
+# Handle existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Admin routes
+RewriteRule ^admin$ admin/index.php [L,QSA]
+RewriteRule ^admin/login$ admin/login.php [L,QSA]
+RewriteRule ^admin/settings$ admin/settings/index.php [L,QSA]
+RewriteRule ^admin/about$ admin/about/index.php [L,QSA]
+RewriteRule ^admin/services$ admin/services/index.php [L,QSA]
+RewriteRule ^admin/services/new$ admin/services/new.php [L,QSA]
+RewriteRule ^admin/services/edit/(.+)$ admin/services/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/industries$ admin/industries/index.php [L,QSA]
+RewriteRule ^admin/industries/new$ admin/industries/new.php [L,QSA]
+RewriteRule ^admin/industries/edit/(.+)$ admin/industries/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/core-values$ admin/core-values/index.php [L,QSA]
+RewriteRule ^admin/core-values/new$ admin/core-values/new.php [L,QSA]
+RewriteRule ^admin/core-values/edit/(.+)$ admin/core-values/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/why-choose$ admin/why-choose/index.php [L,QSA]
+RewriteRule ^admin/why-choose/new$ admin/why-choose/new.php [L,QSA]
+RewriteRule ^admin/why-choose/edit/(.+)$ admin/why-choose/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/approach-steps$ admin/approach-steps/index.php [L,QSA]
+RewriteRule ^admin/approach-steps/new$ admin/approach-steps/new.php [L,QSA]
+RewriteRule ^admin/approach-steps/edit/(.+)$ admin/approach-steps/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/team$ admin/team/index.php [L,QSA]
+RewriteRule ^admin/team/new$ admin/team/new.php [L,QSA]
+RewriteRule ^admin/team/edit/(.+)$ admin/team/edit.php?slug=$1 [L,QSA]
+RewriteRule ^admin/articles$ admin/articles/index.php [L,QSA]
+RewriteRule ^admin/articles/new$ admin/articles/new.php [L,QSA]
+RewriteRule ^admin/articles/edit/(.+)$ admin/articles/edit.php?slug=$1 [L,QSA]
+
+# API routes
+RewriteRule ^api/auth/login$ api/auth/login.php [L,QSA]
+RewriteRule ^api/auth/logout$ api/auth/logout.php [L,QSA]
+RewriteRule ^api/auth/session$ api/auth/session.php [L,QSA]
+RewriteRule ^api/settings$ api/settings.php [L,QSA]
+RewriteRule ^api/about$ api/about.php [L,QSA]
+RewriteRule ^api/content/([a-z_]+)$ api/content/index.php?type=$1 [L,QSA]
+RewriteRule ^api/content/([a-z_]+)/(.+)$ api/content/item.php?type=$1&slug=$2 [L,QSA]
+RewriteRule ^api/articles$ api/articles.php [L,QSA]
+RewriteRule ^api/articles/(.+)$ api/articles.php?slug=$1 [L,QSA]
+
+# Public pages
+RewriteRule ^about$ pages/about.php [L,QSA]
+RewriteRule ^contact$ pages/contact.php [L,QSA]
+RewriteRule ^services$ pages/services.php [L,QSA]
+RewriteRule ^services/([a-z0-9-]+)$ pages/service-detail.php?slug=$1 [L,QSA]
+RewriteRule ^industries$ pages/industries.php [L,QSA]
+RewriteRule ^industries/([a-z0-9-]+)$ pages/industry-detail.php?slug=$1 [L,QSA]
+RewriteRule ^team$ pages/team.php [L,QSA]
+RewriteRule ^team/([a-z0-9-]+)$ pages/team-detail.php?slug=$1 [L,QSA]
+RewriteRule ^research$ pages/research.php [L,QSA]
+RewriteRule ^research/([a-z0-9-]+)$ pages/article-detail.php?slug=$1 [L,QSA]
+
+# Default - home page
+RewriteRule ^$ pages/home.php [L,QSA]
