@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  category    String
+  author      String   @default("Biztra Business Advisory")
+  readTime    String   @default("5 min read")
+  published   Boolean  @default(false)
+  featured    Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, publishedAt])
+  @@index([category])
+}
+
+// Singleton — site-wide settings (hero, contact, footer, brand)
+model SiteSetting {
+  id                 String   @id @default("singleton")
+  brandName          String   @default("Biztra")
+  brandTagline       String   @default("Business Advisory")
+
+  heroEyebrow        String   @default("Kathmandu · Nepal · Est. 2023")
+  heroHeadline       String   @default("Transforming Businesses Through Smarter Advisory & Financial Practices")
+  heroSubtitle       String   @default("Biztra Business Advisory helps businesses across Nepal build stronger financial systems, maintain compliance, optimize operations, and achieve sustainable growth through professional, practical, and globally aligned advisory solutions.")
+  heroPrimaryCta     String   @default("Book a Consultation")
+  heroSecondaryCta   String   @default("Explore Our Services")
+  heroStat1Value     String   @default("6+")
+  heroStat1Label     String   @default("Years Professional Experience")
+  heroStat2Value     String   @default("9")
+  heroStat2Label     String   @default("Service Verticals")
+  heroStat3Value     String   @default("8+")
+  heroStat3Label     String   @default("Industries Served")
+  heroStat4Value     String   @default("100%")
+  heroStat4Label     String   @default("Nepal-Focused Advisory")
+
+  footerTagline      String   @default("Professional Advisory. Practical Solutions. Sustainable Growth.")
+  footerDescription  String   @default("A Nepal-focused business advisory practice combining local market expertise with globally standardized professional practices.")
+
+  contactPhone       String   @default("+977-1-4000000")
+  contactEmail       String   @default("info@biztra.com.np")
+  contactAddress     String   @default("Kathmandu, Nepal")
+  contactAddressDetail String  @default("Office address shared on request")
+  contactHours       String   @default("Sun — Fri · 9:30 — 17:30")
+  contactHoursDetail String   @default("Saturday closed")
+  contactResponseTime String  @default("We respond within 1 business day")
+  mapsUrl            String   @default("https://maps.google.com")
+
+  linkedinUrl        String   @default("#")
+  facebookUrl        String   @default("#")
+  instagramUrl       String   @default("#")
+
+  updatedAt          DateTime @updatedAt
+}
+
+// Singleton — About page content
+model AboutContent {
+  id                  String   @id @default("singleton")
+  storyEyebrow        String   @default("Who We Are")
+  storyHeading        String   @default("Your Trusted Partner for Business Growth")
+  storyParagraph1     String
+  storyParagraph2     String
+  storyParagraph3     String
+  storyParagraph4     String
+  storyQuote          String   @default("A trusted partner helping Nepalese businesses operate with global professional standards.")
+
+  visionEyebrow       String   @default("Our Vision")
+  visionText          String   @default("To accelerate enterprise growth across the industry by transforming conventional business practices into systematic, compliant, and globally standardized financial practices.")
+  visionContext       String   @default("Our vision reflects the gap we see across the Nepalese corporate landscape — between the practices that have historically sustained businesses and the systematic, globally standardized practices that will sustain them in the years ahead. We exist to help close that gap, one organization at a time.")
+
+  missionEyebrow      String   @default("Our Mission")
+  missionHeading      String   @default("A One-Stop Hub for Comprehensive Advisory Excellence")
+  missionText         String   @default("To serve as a premier, one-stop hub for comprehensive business advisory solutions, relentlessly delivering exceptional quality services. We are committed to actively empowering accounting & finance professionals and business owners while fostering widespread awareness and integration of globally standardized business practices across the corporate landscape.")
+
+  coreValuesEyebrow   String   @default("Core Values")
+  coreValuesHeading   String   @default("The Principles Behind Our Practice")
+  coreValuesSubtitle  String   @default("Six values that govern every engagement we accept — and every recommendation we make.")
+
+  whyChooseEyebrow    String   @default("Why Choose Us")
+  whyChooseHeading    String   @default("A Practice Built on Substance, Not Slogans")
+  whyChooseSubtitle   String   @default("We are chosen by organizations that value depth of expertise, structured thinking, and a partner who genuinely invests in their long-term outcomes.")
+
+  updatedAt           DateTime @updatedAt
+}
+
+// Generic content items — services, industries, core values, why-choose, approach steps, team members
+// The `type` field discriminates the kind. The `data` JSON holds type-specific fields.
+model ContentItem {
+  id          String   @id @default(cuid())
+  type        String   // "service" | "industry" | "core_value" | "why_choose" | "approach_step" | "team_member"
+  slug        String   // unique within type
+  title       String
+  subtitle    String?
+  description String?
+  iconName    String   @default("Briefcase")  // Lucide icon name
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  featured    Boolean  @default(false)
+  data        String   @default("{}")  // JSON string for type-specific fields (deliverables, expertise, etc.)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([type, slug])
+  @@index([type, published, order])
+}
