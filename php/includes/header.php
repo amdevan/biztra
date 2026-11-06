@@ -1,8 +1,5 @@
 <?php
-/**
- * Common HTML header include
- * Requires $pageTitle, optionally $pageDescription
- */
+// site header - nav etc. needs $pageTitle
 
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/helpers.php';
@@ -23,10 +20,8 @@ $isHome = $currentPath === '/';
     <meta name="description" content="<?= e($pageDescription) ?>">
     <title><?= e($pageTitle) ?></title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <!-- normal system fonts only, no fancy web fonts -->
+    <style>body{font-family: Arial, Helvetica, sans-serif;}</style>
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,9 +37,9 @@ $isHome = $currentPath === '/';
                     cream: '#fbfbf9',
                 },
                 fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                    serif: ['Playfair Display', 'serif'],
-                    hand: ['Caveat', 'cursive'],
+                    sans: ['Arial', 'Helvetica', 'sans-serif'],
+                    serif: ['Arial', 'Helvetica', 'sans-serif'],
+                    hand: ['Arial', 'Helvetica', 'sans-serif'],
                 },
             }
         }
@@ -126,15 +121,15 @@ $isHome = $currentPath === '/';
         }
 
         /* Prose content for articles */
-        .prose-content h2 { font-size: 1.5rem; font-family: 'Playfair Display', serif; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #073055; }
-        .prose-content h3 { font-size: 1.25rem; font-family: 'Playfair Display', serif; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #073055; }
+        .prose-content h2 { font-size: 1.5rem; font-family: Arial, Helvetica, sans-serif; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; color: #073055; }
+        .prose-content h3 { font-size: 1.25rem; font-family: Arial, Helvetica, sans-serif; font-weight: bold; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #073055; }
         .prose-content p { margin: 0.75rem 0; line-height: 1.75; }
         .prose-content strong { font-weight: 600; }
         .prose-content ul { list-style-type: disc; padding-left: 1.25rem; margin: 1rem 0; }
         .prose-content li { margin: 0.5rem 0; }
         .prose-content blockquote { border-left: 4px solid #4c855c; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #6b7280; background: rgba(245,246,248,0.3); border-radius: 0 0.5rem 0.5rem 0; padding: 0.5rem 1rem; }
         .prose-content hr { margin: 2rem 0; border-color: #e5e7eb; }
-        .prose-content code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; font-family: 'Geist Mono', monospace; }
+        .prose-content code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875rem; font-family: monospace; }
     </style>
 </head>
 <body class="bg-white font-sans text-charcoal">

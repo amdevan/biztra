@@ -112,7 +112,7 @@ include __DIR__ . '/../includes/header.php';
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
-                <p class="mt-8 font-hand text-3xl text-navy-deep/80 -rotate-1">— Narendra, founder</p>
+                <p class="mt-8 italic text-navy-deep/80">— Narendra, founder</p>
                 <p class="mt-1 text-xs text-charcoal/50">P.S. If you call, you will probably get me. That is the point.</p>
             </div>
         </div>

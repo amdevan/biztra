@@ -1,7 +1,5 @@
 <?php
-/**
- * Lightweight Markdown-to-HTML renderer
- */
+// tiny markdown renderer for articles
 
 function renderMarkdown(string $markdown): string {
     $text = htmlspecialchars($markdown, ENT_QUOTES, 'UTF-8');
