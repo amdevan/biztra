@@ -58,11 +58,19 @@ function getRelatedArticles(string $currentSlug, string $category, int $limit = 
     // Fill remaining with other categories
     if (count($articles) < $limit) {
         $existingSlugs = array_column($articles, 'slug');
-        $placeholders = str_repeat('?,', count($existingSlugs)) . '?';
         $remaining = $limit - count($articles);
-        $params = array_merge([$currentSlug], $existingSlugs, [$remaining]);
-        $stmt = $pdo->prepare("SELECT id, slug, title, excerpt, category, author, read_time, published_at FROM articles WHERE published = 1 AND slug != ? AND slug NOT IN ($placeholders) ORDER BY published_at DESC LIMIT ?");
-        $stmt->execute($params);
+
+        if (empty($existingSlugs)) {
+            $stmt = $pdo->prepare("SELECT id, slug, title, excerpt, category, author, read_time, published_at FROM articles WHERE published = 1 AND slug != ? ORDER BY published_at DESC LIMIT ?");
+            $stmt->bindValue(1, $currentSlug, PDO::PARAM_STR);
+            $stmt->bindValue(2, $remaining, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            $placeholders = implode(',', array_fill(0, count($existingSlugs), '?'));
+            $params = array_merge([$currentSlug], $existingSlugs, [$remaining]);
+            $stmt = $pdo->prepare("SELECT id, slug, title, excerpt, category, author, read_time, published_at FROM articles WHERE published = 1 AND slug != ? AND slug NOT IN ($placeholders) ORDER BY published_at DESC LIMIT ?");
+            $stmt->execute($params);
+        }
         $articles = array_merge($articles, $stmt->fetchAll());
     }
 

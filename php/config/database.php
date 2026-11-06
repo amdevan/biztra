@@ -4,7 +4,7 @@
  * Update these values for your cPanel MySQL database
  */
 return [
-    'host'     => 'localhost',
+    'host'     => '127.0.0.1',
     'port'     => 3306,
     'dbname'   => 'biztra_db',
     'username' => 'biztra_user',
