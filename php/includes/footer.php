@@ -37,20 +37,17 @@ function toggleMobileMenu() {
     document.body.style.overflow = menu.classList.contains('hidden') ? '' : 'hidden';
 }
 
-// Header scroll effect
+// Header scroll effect — on home, header goes solid white after scrolling
+// (old version only changed background, leaving white nav text invisible on white)
 (function() {
     const header = document.getElementById('site-header');
     const isHome = <?= $isHome ? 'true' : 'false' ?>;
     if (isHome && header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.remove('bg-transparent');
-                header.classList.add('bg-white/95', 'backdrop-blur-md');
-            } else {
-                header.classList.add('bg-transparent');
-                header.classList.remove('bg-white/95', 'backdrop-blur-md');
-            }
-        });
+        const onScroll = () => {
+            header.classList.toggle('header-solid', window.scrollY > 50);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll);
     }
 })();
 </script>

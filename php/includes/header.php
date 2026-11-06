@@ -49,6 +49,10 @@ $isHome = $currentPath === '/';
     <style>
         /* Custom utilities matching the original project */
         .tracking-executive { letter-spacing: -0.02em; }
+        /* scrolled home header turns white, text goes dark */
+        #site-header.header-solid { background: rgba(255,255,255,0.96); box-shadow: 0 1px 0 0 rgba(15,39,71,0.08); }
+        #site-header.header-solid .header-brand { color: #073055 !important; }
+        #site-header.header-solid nav a, #site-header.header-solid #mobile-menu-btn { color: #1c1e26 !important; }
         .border-hairline { border-width: 0.5px; }
         .shadow-warm { box-shadow: 0 1px 3px rgba(15,39,71,0.06), 0 4px 12px rgba(15,39,71,0.04); }
         .shadow-warm-lg { box-shadow: 0 4px 12px rgba(15,39,71,0.08), 0 12px 40px rgba(15,39,71,0.06); }
@@ -148,7 +152,7 @@ $isHome = $currentPath === '/';
                     </div>
                 </div>
                 <div>
-                    <span class="font-serif text-xl lg:text-2xl font-semibold tracking-executive text-navy-deep <?= $isHome ? 'text-white' : '' ?>"><?= e($brandName) ?></span>
+                    <span class="header-brand font-serif text-xl lg:text-2xl font-semibold tracking-executive text-navy-deep <?= $isHome ? 'text-white' : '' ?>"><?= e($brandName) ?></span>
                     <span class="block text-[9px] lg:text-[10px] font-medium uppercase tracking-[0.28em] text-gold"><?= e($brandTagline) ?></span>
                 </div>
             </a>
