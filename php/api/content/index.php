@@ -68,9 +68,10 @@ if ($method === 'POST') {
 
     $itemData = $body['data'] ?? [];
 
-    $insertSql = "INSERT INTO content_items (type, slug, title, subtitle, description, icon_name, item_order, published, featured, data, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+    $insertSql = "INSERT INTO content_items (id, type, slug, title, subtitle, description, icon_name, item_order, published, featured, data, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     $insertStmt = $pdo->prepare($insertSql);
     $insertStmt->execute([
+        newId(),
         $type,
         $body['slug'],
         $body['title'],

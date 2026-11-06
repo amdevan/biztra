@@ -186,9 +186,10 @@ if ($method === 'POST') {
     $isPublished = !empty($body['published']);
     $publishedAt = $isPublished ? date('Y-m-d H:i:s') : null;
 
-    $insertSql = "INSERT INTO articles (slug, title, excerpt, content, category, author, read_time, published, featured, published_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+    $insertSql = "INSERT INTO articles (id, slug, title, excerpt, content, category, author, read_time, published, featured, published_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
     $insertStmt = $pdo->prepare($insertSql);
     $insertStmt->execute([
+        newId(),
         $body['slug'],
         $body['title'],
         $body['excerpt'],

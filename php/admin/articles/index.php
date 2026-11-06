@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/articles.php';
-require_once __DIR__ . '/../includes/helpers.php';
-require_once __DIR__ . '/../includes/icons.php';
+require_once __DIR__ . '/../../includes/db.php';
+require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../../includes/articles.php';
+require_once __DIR__ . '/../../includes/helpers.php';
+require_once __DIR__ . '/../../includes/icons.php';
 
 if (!isLoggedIn()) {
     header('Location: /admin/login');
@@ -134,5 +134,5 @@ async function deleteArticle(slug, title) {
 </script>
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . '/layout.php';
+require_once __DIR__ . '/../layout.php';
 adminLayout('Research Articles - Biztra Admin', 'articles', $content);

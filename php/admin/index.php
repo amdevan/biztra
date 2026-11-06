@@ -1,13 +1,11 @@
 <?php
-/**
- * Admin Dashboard — /admin
- */
-require_once __DIR__ . '/../../includes/db.php';
-require_once __DIR__ . '/../../includes/auth.php';
-require_once __DIR__ . '/../../includes/content.php';
-require_once __DIR__ . '/../../includes/articles.php';
-require_once __DIR__ . '/../../includes/helpers.php';
-require_once __DIR__ . '/../../includes/icons.php';
+// dashboard
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/content.php';
+require_once __DIR__ . '/../includes/articles.php';
+require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/../includes/icons.php';
 require_once __DIR__ . '/layout.php';
 
 $currentPath = getCurrentPath();

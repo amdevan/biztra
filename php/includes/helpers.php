@@ -27,6 +27,11 @@ function formatDate(?string $dateStr): string {
     return $dt->format('M d, Y');
 }
 
+// random id for new rows (content_items and articles use VARCHAR ids, no db default)
+function newId(): string {
+    return bin2hex(random_bytes(18));
+}
+
 function getBaseUrl(): string {
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';

@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../includes/content.php';
 require_once __DIR__ . '/../../includes/articles.php';
 require_once __DIR__ . '/../../includes/helpers.php';
 require_once __DIR__ . '/../../includes/icons.php';
-require_once __DIR__ . '/layout.php';
+require_once __DIR__ . '/../layout.php';
 
 $currentPath = getCurrentPath();
 if ($currentPath !== '/admin/login' && !isLoggedIn()) {
