@@ -1,16 +1,6 @@
--- ============================================================
--- Biztra PHP — MySQL Schema
--- Converted from Prisma (SQLite) to MySQL / InnoDB / utf8mb4
--- ============================================================
+-- run this first, then seed.sql
 
--- Ensure we start clean (optional — remove if not desired)
--- DROP DATABASE IF EXISTS biztra;
--- CREATE DATABASE biztra CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- USE biztra;
-
--- ─────────────────────────────────────────────────────────────
 -- 1. USERS
--- ─────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
     id          VARCHAR(36)  PRIMARY KEY,
     email       VARCHAR(255) NOT NULL,
@@ -22,9 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE KEY uk_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ─────────────────────────────────────────────────────────────
 -- 2. ARTICLES
--- ─────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS articles (
     id           VARCHAR(36)  PRIMARY KEY,
     slug         VARCHAR(255) NOT NULL,
@@ -44,9 +32,7 @@ CREATE TABLE IF NOT EXISTS articles (
     INDEX idx_articles_category (category)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ─────────────────────────────────────────────────────────────
 -- 3. SITE SETTINGS (singleton — always id='singleton')
--- ─────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS site_settings (
     id                    VARCHAR(50)  PRIMARY KEY DEFAULT 'singleton',
     brand_name            VARCHAR(255) NOT NULL DEFAULT 'Biztra',
@@ -80,9 +66,7 @@ CREATE TABLE IF NOT EXISTS site_settings (
     updated_at            TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ─────────────────────────────────────────────────────────────
 -- 4. ABOUT CONTENT (singleton — always id='singleton')
--- ─────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS about_content (
     id                  VARCHAR(50)  PRIMARY KEY DEFAULT 'singleton',
     story_eyebrow       VARCHAR(255) NOT NULL DEFAULT 'Who We Are',

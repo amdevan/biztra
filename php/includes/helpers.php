@@ -47,12 +47,7 @@ function setActiveClass(string $path): string {
     return isActive($path) ? 'text-gold font-semibold' : '';
 }
 
-/**
- * Normalize an admin form payload into the canonical API shape.
- * Admin forms send flat fields: icon, order, short_description, full_description,
- * deliverables, services, initials, role, designation, expertise, highlights,
- * step_number, number. This maps them into icon_name / item_order / data{}.
- */
+// admin forms post flat fields, this tucks them into the right columns + data json
 function normalizeContentPayload(array $body): array {
     // Icon: accept icon, icon_name, or iconName
     $icon = $body['icon'] ?? $body['icon_name'] ?? $body['iconName'] ?? null;

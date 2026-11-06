@@ -1,7 +1,6 @@
 <?php
-/**
- * Database connection singleton using PDO
- */
+// db connection, reused everywhere
+// note: host must be 127.0.0.1 not localhost — mac/windows php uses a socket for localhost and fails
 
 require_once __DIR__ . '/../config/database.php';
 

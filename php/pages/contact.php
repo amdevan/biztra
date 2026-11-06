@@ -56,10 +56,10 @@ $serviceOptions = [
                 Contact
             </span>
             <h1 class="mt-5 font-serif tracking-executive text-balance text-4xl sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05] font-medium">
-                Let's Discuss Your Business
+                Tell us what's on your mind
             </h1>
             <p class="mt-6 text-pretty text-base sm:text-lg leading-relaxed text-white/70 max-w-2xl">
-                Tell us about your organization, your challenges, and the outcomes you're working toward. We'll respond within one business day with a thoughtful next step.
+                Books in a mess? Tax letter from the IRD? Just want a second opinion before a big decision? Write to us — we reply within a day, usually much faster.
             </p>
         </div>
     </div>

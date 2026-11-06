@@ -19,10 +19,10 @@ include __DIR__ . '/../includes/header.php';
 
 $brandTagline = $settings['brand_tagline'] ?? 'Business Advisory';
 $heroEyebrow = $settings['hero_eyebrow'] ?? 'Kathmandu · Nepal · Est. 2023';
-$heroHeadline = $settings['hero_headline'] ?? 'Transforming Businesses Through Smarter Advisory & Financial Practices';
-$heroSubtitle = $settings['hero_subtitle'] ?? 'Biztra Business Advisory helps businesses across Nepal build stronger financial systems, maintain compliance, optimize operations, and achieve sustainable growth through professional, practical, and globally aligned advisory solutions.';
-$heroPrimaryCta = $settings['hero_primary_cta'] ?? 'Book a Consultation';
-$heroSecondaryCta = $settings['hero_secondary_cta'] ?? 'Explore Our Services';
+$heroHeadline = $settings['hero_headline'] ?? 'Accounting, audit and tax — done properly & in plain words';
+$heroSubtitle = $settings['hero_subtitle'] ?? 'We help Nepali businesses get their books in order, file taxes on time and make decisions backed by clear numbers. Small team, big-firm standards, no confusing jargon.';
+$heroPrimaryCta = $settings['hero_primary_cta'] ?? 'Talk to us';
+$heroSecondaryCta = $settings['hero_secondary_cta'] ?? 'See what we do';
 
 $stats = [
     ['value' => $settings['hero_stat1_value'] ?? '6+', 'label' => $settings['hero_stat1_label'] ?? 'Years Professional Experience'],

@@ -1,7 +1,5 @@
 <?php
-/**
- * Content data access layer
- */
+// all the queries for content_items + settings
 
 require_once __DIR__ . '/db.php';
 
@@ -54,7 +52,7 @@ function getContentItem(string $type, string $slug, bool $includeUnpublished = f
     return $item ?: null;
 }
 
-// Typed convenience wrappers
+// short helpers so pages don't repeat the type name
 function getServices(): array { return getPublishedContent('service'); }
 function getIndustries(): array { return getPublishedContent('industry'); }
 function getCoreValues(): array { return getPublishedContent('core_value'); }

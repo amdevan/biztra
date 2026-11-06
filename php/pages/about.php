@@ -35,10 +35,10 @@ include __DIR__ . '/../includes/header.php';
                 About Us
             </span>
             <h1 class="mt-5 font-serif tracking-executive text-balance text-4xl sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05] font-medium">
-                Your Trusted Partner for Business Growth
+                A small firm in Kathmandu. We treat your business like our own.
             </h1>
             <p class="mt-6 text-pretty text-base sm:text-lg leading-relaxed text-white/70 max-w-2xl">
-                Established in 2023 in Kathmandu, Biztra Business Advisory provides a full spectrum of advisory and consulting services — combining deep local expertise with rigorous professional standards.
+                Started in 2023 by a CA who got tired of seeing good businesses ruin themselves with messy books. We do audit, accounts, tax and advice — simply and honestly.
             </p>
             <a href="#story" class="group mt-9 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-navy-deep transition-all duration-300 hover:bg-white">
                 Discover Biztra
@@ -89,8 +89,8 @@ include __DIR__ . '/../includes/header.php';
                                 <?= getIcon('Briefcase', 'h-5 w-5') ?>
                             </div>
                             <div>
-                                <div class="font-serif text-sm font-semibold text-navy-deep">Quality-Driven Practice</div>
-                                <div class="text-[11px] text-charcoal/70">Proactive &amp; Professional</div>
+                                <div class="font-serif text-sm font-semibold text-navy-deep">Small team, 2023</div>
+                                <div class="text-[11px] text-charcoal/70">Naxal, Kathmandu</div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ include __DIR__ . '/../includes/header.php';
                     Our Story
                 </span>
                 <h2 class="mt-4 font-serif tracking-executive text-balance text-3xl sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1] font-medium text-navy-deep">
-                    Building a Trusted Standard for Nepalese Advisory
+                    How we started (and why we still answer the phone ourselves)
                 </h2>
                 <div class="mt-6 space-y-5 text-base leading-relaxed text-charcoal/70 text-pretty">
                     <?php foreach (['story_paragraph1', 'story_paragraph2', 'story_paragraph3', 'story_paragraph4'] as $field): ?>
@@ -112,6 +112,8 @@ include __DIR__ . '/../includes/header.php';
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
+                <p class="mt-8 font-hand text-3xl text-navy-deep/80 -rotate-1">— Narendra, founder</p>
+                <p class="mt-1 text-xs text-charcoal/50">P.S. If you call, you will probably get me. That is the point.</p>
             </div>
         </div>
     </div>
